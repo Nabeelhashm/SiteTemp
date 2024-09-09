@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0 !important;
+    padding: 0 !important;
+    
+  }
+  
+  .ssec{
+    object-fit: contain;
+  }
+  .hero {
+    height: 100vh;
+    background: url(/assets/bg.jpg) no-repeat center center/cover ; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+  }
+
+  .typewriter-container {
+    font-size: 2rem;
+    font-weight: bold;
+    overflow: hidden;
+    border-right: 3px solid rgba(255, 255, 255, 0.75);
+    white-space: nowrap;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+    width: fit-content;
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: rgba(255, 255, 255, 0.75); }
+  }
+
+  @media (max-width: 768px) {
+    .typewriter-container {
+      font-size: 1.5rem;
+    }
+  }
+  .top-bar {
+    background-color: Red;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    animation: fadeInDown 1s ease-in-out;
+  }
+
+  .top-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar {
+    
+    padding: 1rem 0;
+  }
+
+  .navbar-nav .nav-item {
+    margin-right: 2rem;
+  }
+
+  .navbar-nav .nav-link {
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: red;
+  }
+
+  .navbar .btn-custom {
+    background-color: red;
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .navbar .btn-custom:hover {
+    background-color: Red;
+    transform: translateY(-2px);
+  }
+
+  .dropdown-menu {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    padding: 0.0rem 0rem;
+    margin-top: 0.0 rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .dropdown-item {
+    padding: 0.5rem 1.5rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: red;
+  }
+
+  .dropdown:hover .fa-chevron-down {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+  }
+
+  .fa-chevron-down {
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+  }
+
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .dline{
+    
+    background-color: red;
+  }

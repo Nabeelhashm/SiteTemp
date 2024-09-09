@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Carousel with Sliding Animation</title>
+   
+</head>
+<body>
+
+    <style>
+
+.carousel {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    overflow: hidden;
+}
+
+.carousel-container {
+    width: 140%;
+    margin-left: -20%;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(-33.33%);
+}
+
+.carousel-item {
+    width: 33.33%;
+    flex: 0 0 33.33%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007BFF;
+    color: white;
+    flex-direction: row;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.text-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 50%;
+}
+
+.text-section h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.text-section p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.image-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 50%;
+    background-color: #333;
+}
+
+.image-section img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-prev {
+    left: -30px;
+}
+
+.carousel-next {
+    right: -30px;
+}
+
+@media screen and (max-width: 600px) {
+    .text-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .text-section p {
+        font-size: 1rem;
+    }
+
+    .carousel-prev {
+        left: -20px;
+    }
+
+    .carousel-next {
+        right: -20px;
+    }
+}
+    </style>
+
+<div class="carousel">
+    <button class="carousel-prev">&lt;</button>
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <div class="carousel-item">
+                <div class="text-section">
+                    <h1>Section 1</h1>
+                    <p>This is some centered text within Section 1.</p>
+                </div>
+                <div class="image-section">
+                    <img src="your-image-url-1.jpg" alt="Image 1">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="text-section">
+                    <h1>Section 2</h1>
+                    <p>This is some centered text within Section 2.</p>
+                </div>
+                <div class="image-section">
+                    <img src="your-image-url-2.jpg" alt="Image 2">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="text-section">
+                    <h1>Section 3</h1>
+                    <p>This is some centered text within Section 3.</p>
+                </div>
+                <div class="image-section">
+                    <img src="your-image-url-3.jpg" alt="Image 3">
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-next">&gt;</button>
+</div>
+
+<script src="script.js">
+
+const carouselSlide = document.querySelector('.carousel-slide');
+const carouselItems = document.querySelectorAll('.carousel-item');
+const prevButton = document.querySelector('.carousel-prev');
+const nextButton = document.querySelector('.carousel-next');
+
+let counter = 1; // Start at the first actual slide
+const size = carouselItems[0].clientWidth;
+
+// Clone the first and last slides for infinite looping
+const firstClone = carouselItems[0].cloneNode(true);
+const lastClone = carouselItems[carouselItems.length - 1].cloneNode(true);
+
+carouselSlide.appendChild(firstClone);
+carouselSlide.insertBefore(lastClone, carouselSlide.firstChild);
+
+carouselSlide.style.transform = `translateX(${-size * counter}px)`;
+
+// Button listeners
+nextButton.addEventListener('click', () => {
+    if (counter >= carouselItems.length) return;
+    carouselSlide.style.transition = "transform 0.5s ease-in-out";
+    counter++;
+    carouselSlide.style.transform = `translateX(${-size * counter}px)`;
+
+    // Reset position for infinite loop
+    if (counter >= carouselItems.length - 1) {
+        setTimeout(() => {
+            carouselSlide.style.transition = "none";
+            counter = 1;
+            carouselSlide.style.transform = `translateX(${-size * counter}px)`;
+        }, 500);
+    }
+});
+
+prevButton.addEventListener('click', () => {
+    if (counter <= 0) return;
+    carouselSlide.style.transition = "transform 0.5s ease-in-out";
+    counter--;
+    carouselSlide.style.transform = `translateX(${-size * counter}px)`;
+
+    // Reset position for infinite loop
+    if (counter <= 0) {
+        setTimeout(() => {
+            carouselSlide.style.transition = "none";
+            counter = carouselItems.length - 2;
+            carouselSlide.style.transform = `translateX(${-size * counter}px)`;
+        }, 500);
+    }
+});
+
+</script>
+</body>
+</html>
